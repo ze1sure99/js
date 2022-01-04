@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+<div id="app">
+   <my-com-a></my-com-a>
+</div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+    },
+    components:{
+      'my-com-a':{
+        template:`
+        <div>
+           <h3>{{title}}</h3>
+           <p>{{content}}</p>
+        </div>
+       `,
+       data(){
+          return {
+            title:'组件标题',
+            content:'组件内容'
+          }
+       }
+      }
+    }
+  })
+</script>
+</html>

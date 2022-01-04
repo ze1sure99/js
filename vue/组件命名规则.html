@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+   <div id="app">
+       <my-com-a></my-com-a>
+       <my-com-b></my-com-b>
+   </div>
+</body>
+<script>
+    //kebab-case 进行注册
+    Vue.component('my-com-a',{
+      template: '<div>这是a组件的内容</div>'
+    });
+    //PascalCase进行注册
+    Vue.component('MyComB',{
+      template: '<div>这是b组件的内容</div>'
+    })
+    new Vue({
+      el:'#app',
+      data:{
+      }
+    })
+</script>
+</html>

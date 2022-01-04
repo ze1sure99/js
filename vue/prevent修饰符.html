@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+   <div id="app">
+       <a @click.prevent="fn" href="https://kaiwu.lagou.com">链接</a>
+   </div>
+   <script>
+       new Vue({
+           el:'#app',
+           data:{
+
+           },
+           methods:{
+               fn(){
+                   console.log('这是a标签的点击事件')
+               }
+           }
+       })
+   </script>
+</body>
+</html>

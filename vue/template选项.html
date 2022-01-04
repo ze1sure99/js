@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+   <div id="app">
+        <my-com-a></my-com-a>
+   </div>
+  <script>
+     Vue.component('my-com-a',{
+       template:`
+        <div>
+          这是组件A的内容:{{1 + 2* 3}}
+        </div>
+       `
+     })
+     new Vue({
+       el:'#app',
+       data:{
+
+       }
+     })
+  </script>
+</body>
+</html>

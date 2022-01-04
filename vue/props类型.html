@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+ <div id="app">
+     <my-component
+     v-bind:par-str="str"
+     :par-num="num"
+     :par-arr="arr"
+     :par-obj="obj"
+     :par-any="any"
+     :par-data="any"
+     >
+     </my-component>
+ </div>
+</body>
+<script>
+    Vue.component('my-component',{
+        //如果要设置props的具体规则,需要更改为对象写法
+        props:{
+            parStr:String,
+            parNum:Number,
+            parArr:Array,
+            parObj:Object,
+            parAny:null, //undefined
+            parData:[String,Boolean]
+        },
+        template:`
+        <div>
+           {{parStr}}
+           {{parNum}}
+           {{parArr}}
+           {{parObj}}
+           {{parAny}}
+           {{parData}}
+        </div>
+        `
+    })
+    new Vue({
+        el:'#app',
+        data:{
+            num:100,
+            str:'abc',
+            arr:[1,2,3],
+            obj:{
+                content1:'示例内容1',
+                content2:'示例内容2'
+            },
+            any:false
+        }
+    })
+</script>
+</html>

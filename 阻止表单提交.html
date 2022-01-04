@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <form action="xxx" onsubmit="return login()">
+        <p>账号：<input id="username"/></p>
+        <p>电话：<input id="phone"/></p>
+        <p><button>登陆</button></p>
+     </form>
+
+     <script>
+        function login(){
+            var name= document.getElementById("username").value;
+            if(name== ""){
+              alert("账号不能为空");
+              return false;//阻止表单提交
+            }
+            return  true;//放行，让表单提交
+        }
+     </script>
+</body>
+</html>

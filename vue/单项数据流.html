@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+  <div id="app">
+        <my-component
+        :initial-title="title"
+        :Obj="Obj"
+        >
+        </my-component>
+  </div>
+</body>
+<script>
+
+    //接收到父组件传过来的props属性后保存到data里面
+    Vue.component('my-component',{
+        //注意,如果prop为数组或对象时,子组件操作将会影响到父组件的状态
+        props: ['initialTitle','Obj'],
+        template:`
+         <div>
+           {{title}}
+           <button @click="fn">按钮</button>
+         </div>
+        `,
+        data(){
+            return {
+                title: this.initialTitle
+            }
+        },
+        methods:{
+            fn(){
+                // console.log(this);
+                // this.title='这是新的标题';
+                // this.initialTitle='这是新的标题';不会影响父组件
+               this.Obj.name='tom'; //会影响到父组件
+            }
+        }
+    })
+    new Vue({
+        el:'#app',
+        data:{
+            title:'这是示例标题',
+            Obj:{
+                name:'jack',
+                age:18
+            }
+        }
+    })
+</script>
+</html>
