@@ -4,7 +4,35 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
 <body>
-
+    <div id="app">
+       <my-component
+       :title="'示例标题内容'"
+       style="height: 200px"
+       class="colorRed"
+       data-index="3"
+       ></my-component>
+    </div>
 </body>
+<script>
+    Vue.component('MyComponent',{
+        //调用组件时候除了style和class其他的不能被覆盖
+        inheritAttrs:false,
+        template:`
+        <div
+        data-index="6"
+        title="旧的title"
+        class="abc"
+        style="width: 200px;"
+        >这是组件的内容</div>
+        `
+    })
+    new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
 </html>
