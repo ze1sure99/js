@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>子向父传值需要通过自定义事件实现</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+<body>
+<div id="app">
+     <p>输入框内容为：{{inputValue}}</p>
+     <com-input v-model="inputValue"></com-input>
+</div>
+</body>
+<script>
+  //子组件
+  Vue.component('ComInput',{
+    props:['value'],
+    template:`
+     <input
+      type="text"
+      :value="value"
+      @input="$emit('input',$event.target.value)"
+     />
+    `
+  })
+  new Vue({
+    el:'#app',
+    data:{
+       inputValue:''
+    }
+  })
+</script>
+</html>
