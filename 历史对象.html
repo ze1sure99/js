@@ -6,6 +6,8 @@
     <title>历史对象</title>
 </head>
 <body>
+    <a href="./test.html">111</a>
+    <button onclick="fn()">前进</button>
     <script>
         /*
           history  历史记录对象 --- 
@@ -15,6 +17,23 @@
 
        // 当前窗口的历史纪录条数
        console.log(history.length)
+
+       //后退 
+       //history.back();
+
+       //前进
+       //history.forward();
+
+       //go(1) 前进一页
+       //go(2) 前进二页
+       //go(-1)后退一页
+       //go(0) 刷新当前页面  
+       //history.go(); 
+
+       function fn(){
+        // history.forward();
+        history.go(1);
+       }
     </script> 
 
 </body>
