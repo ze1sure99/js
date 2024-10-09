@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹出层</title>
+</head>
+<body>
+    <script>
+        /*
+          alert
+          alert 是在浏览器弹出一个提示框
+        */
+        //弹框以后回阻止js代码的执行
+        //alert('你好');
+        //这个弹出层有一个询问信息和两个按钮
+        //当你点击确定的时候，就会得到 true
+        //当你点击取消的时候，就会得到 false
+        // var boo = window.confirm('我是一个询问框')
+        // console.log(boo)
+
+        //这个弹出层有一个输入框和两个按钮
+        //当你点击取消的时候，得到的是 null
+        //当你点击确定的时候得到的就是你输入的内容
+        var str = window.prompt('请输入内容')
+        console.log(str)
+
+        
+    </script>
+</body>
+</html>

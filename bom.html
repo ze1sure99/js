@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <script>
+        /*
+         前端js组成部分
+           ECMAScript js 语法标准
+           BOM--brower object model 浏览器对象模型 --控制浏览器
+           DOM--document objet model 文档对象模型  --控制html文档 页面
+           BOM 和 DOM 也叫webAPI
+        */
+        // window 也叫全局对象
+       var a = 1;
+       console.log(window);
+       console.log(this);
+       //使用var定义的全局变量 都是windows的属性
+       console.log(window.a);
+       console.log(a);
+       console.log(this.a);
+       var windowHeight = window.innerHeight
+       console.log(windowHeight)
+       var windowWidth = window.innerWidth
+       console.log(windowWidth)
+    </script>
+</body>
+</html>

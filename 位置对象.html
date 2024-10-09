@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>位置对象</title>
+</head>
+<body>
+    <button id="btn" onclick="fn()">按钮</button>
+    <button id="btn2" onclick="fn2()">按钮2</button>
+    </button>
+    <script>
+        // 位置对象 --控制浏览器的 地址栏
+        // 获取或者修改 地址栏的地址
+        location.href
+        console.log(location.href)
+        function fn(){
+            // 修改地址栏的地址 -- 跳转页面
+            location.href = 'https://www.baidu.com'
+        }
+        
+        
+        //地址栏的搜索参数
+        //http://xx.com/a?username=zhangsan&aaa=2  搜索参数 --query 字段
+        location.search
+        console.log(location.search)
+        
+        
+        //哈希值 -- 锚点
+        location.hash
+        // #aabb
+        console.log(location.hash)
+        
+
+        //路径名
+        location.pathname
+        //   /代码/11-代码/11-位置对象.html
+        console.log(location.pathname)
+
+        
+        // reload -- 重新加载 -- 刷新页面
+        // assign(路径) - 页面跳转 - 跟href 一样 （会产生历史记录,可以后退）
+        // replace(路径) -- 替换当前的地址 -- 页面跳转 （不会产生历史记录，不能后退）
+        function fn2(){
+            // location.reload();
+            // location.assign("https://www.baidu.com");
+            location.replace("https://www.baidu.com");
+        }
+        console.log(window.location)
+
+    </script>
+</body>
+</html>
