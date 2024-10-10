@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>返回顶部按钮</title>
+    <style>
+        /* 设置按钮样式 */
+        #backToTop {
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            display: none; /* 初始隐藏 */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        #backToTop:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="backToTop">返回顶部</button>
+
+    <div style="height: 2000px;">
+        <!-- 模拟一个长页面 -->
+        <p>滚动页面查看按钮的效果...</p>
+    </div>
+
+    <script>
+        // 获取按钮元素
+        const backToTopButton = document.getElementById('backToTop');
+
+        // 监听滚动事件
+        window.onscroll = function() {
+            toggleButtonVisibility();
+        };
+
+        // 切换按钮的显示与隐藏
+        function toggleButtonVisibility() {
+            if (window.scrollY > 300) { // 当滚动超过300px时显示按钮
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        // 返回顶部的平滑滚动功能
+        backToTopButton.addEventListener('click', function() {
+            // document.documentElement.scrollTop=0;
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 实现平滑滚动
+            });
+        });
+    </script>
+
+</body>
+</html>
