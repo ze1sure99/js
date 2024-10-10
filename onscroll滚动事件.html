@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>on scroll滚动事件</title>
+</head>
+<body>
+    <button id="btn" onclick="fn()">设置滚动距离</button>
+    <div style="height: 1000px; width: 1000px;"></div>
+    <script>
+        // -这个 onscroll 事件是当浏览器的滚动条滚动的时候触发
+        // - 或者鼠标滚轮滚动的时候出发
+            window.onscroll = function(){
+                 console.log("页面滚动了");
+                //获取滚动距离 -垂直方向 --数字 默认单位px
+                 console.log("垂直方向"+document.documentElement.scrollTop);
+                //获取滚动距离 -水平方向
+                 console.log("水平方向"+document.documentElement.scrollLeft);  
+                 
+            }
+            function fn(){
+                //设置滚动距离
+                document.documentElement.scrollTop = 300;
+            }
+    </script>
+    
+    
+</body>
+</html>

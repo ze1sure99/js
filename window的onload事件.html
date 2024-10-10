@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window的onload事件</title>
+    <script>
+        /*
+          onload事件
+               是在页面所有所有资源加载完毕后执行的
+        */
+        console.log(1);
+        // 一旦页面加载完毕就会执行后面的函数
+        window.onload = function(){
+            console.log("onload 事件执行");
+            btn.style.color = 'red'
+        }
+        console.log(2);
+    </script>
+</head>
+<body>
+      <button id="btn">aa</button>
+</body>
+</html>

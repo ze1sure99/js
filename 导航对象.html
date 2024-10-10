@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航对象</title>
+</head>
+<body>
+    <script>
+        /*
+           navigator
+           导航对象 --- 浏览器的版本信息 --操作系统信息
+         */
+        console.log(navigator);
+       // 用户代理
+       console.log(navigator.userAgent);
+
+       if(navigator.userAgent.toLowerCase().indexOf('windows')!=-1){
+                console.log(navigator.userAgent.toLowerCase().indexOf('windows'))
+				console.log('window  pc')
+			}else{
+				console.log('移动端')
+				if(navigator.userAgent.toLowerCase().indexOf('iphone')!=-1 || navigator.userAgent.toLowerCase().indexOf('ipad')!=-1){
+					console.log('ios')
+				}else{
+					console.log('安卓')
+				}
+				
+			}
+           
+
+            console.log(navigator.language);
+    </script>
+</body>
+</html>
