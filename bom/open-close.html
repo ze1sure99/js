@@ -6,10 +6,14 @@
     <title>open-close</title>
 </head>
 <body>
-    <button onclick="fn()">按钮</button>
+    <button onclick="fn()">打开一个新窗口</button>
+    <button onclick="fn2()">关闭当前窗口</button>
     <script>
-        function fn( ){
-            
+        function fn(){
+            open('./test.html') //打开一个新窗口
+        }
+        function fn2(){
+            close() //关闭当前窗口
         }
     </script>
 </body>

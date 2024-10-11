@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地存储</title>
+</head>
+<body>
+    <script>
+        /*
+          本地存储（硬盘）
+          内存存储 （临时性的存储） js变量  var a = 1;
+          sessionStorage  会话存储 通过浏览器在一个窗口内打开网站到关闭这个窗口之间有效
+          localStorage  本地存储  --我们通过js存入一个页面（网站a） 存入一个数据
+                下次打开（网站a）页面 数据仍然存在
+        */
+       //sessionStorage  
+       
+       //是一个对象-里面有四个方法
+      // localStorage.setItem('key','value');
+      // localStorage.setItem('name','张三');
+
+      // 只能存字符串类型，如果不是，强制转为字符串
+
+
+      //localStorage.setItem('age','18');
+      //let str = localStorage.getItem('name');
+    //   let str = localStorage.getItem('age');
+    //   console.log(str);
+
+      // ---覆盖原来的值 -- 修改
+      //localStorage.setItem('name','李四');
+      
+      //-----根据键删除 对应的值
+      //localStorage.removeItem('name');
+      
+
+      //清空 所有的本地存储（当前网站）
+      //localStorage.clear();
+
+
+      // 用sessionStorage存入一个键值对
+      //sessionStorage.setItem('a','11');
+      
+      // 获取sessionStorage中的数据
+    //    let str = sessionStorage.getItem('a');
+    //     console.log(str);
+     
+      //删除一个键
+      //sessionStorage.removeItem('a'); 
+      
+      //清空
+      //sessionStorage.clear();
+
+    
+    </script>
+</body>
+</html>
