@@ -11,11 +11,43 @@
             setInterval  定时器 -- 间隔一段时间，执行这个代码，然后重复这个过程
             setInterval(函数,事件间隔)
             setInterval(函数名,事件间隔)
+
+
             setTimeout  延时器 -- 间隔一段时间，执行一段代码一次
         */
-       setInterval(function(){
-           console.log('111');
-       },1000)
+    //    setInterval(function(){
+    //        console.log('111');
+    //    },4000)
+
+    //    function fn(){
+    //     console.log('fn');
+    //    }
+    //    setInterval(fn,2000);
+
+        //  let n = 0;
+        //  function fn(){
+        //     console.log('fn', n);
+        //     if(n === 10){
+        //         clearInterval(timer);
+        //     }
+        //     n++;
+        // }
+        // var timer = setInterval(fn,1000);
+        
+        //***** 不会真的在这里等3000 再执行下面的代码
+        console.log('开始延时器');
+        var timer2 =setTimeout(function(){
+            // 延时器和定时器里面的函数 都是异步执行的 - 不是同步
+            console.log('延时器执行完毕');
+        },0)
+        
+        // clearTimeout(timer2);
+        console.log('222');
+
+        //同步执行 -- 明显的先后顺序-- 自上而下执行的
+        //异步执行 -- 相对于同步的代码是 最后执行的
+        //即使延时器 等待是0毫秒 ，也是最后执行的（相对于同步代码）
+
     </script>
 </body>
 </html>
