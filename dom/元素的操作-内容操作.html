@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的操作-内容操作</title>
+</head>
+<body>
+    <input type="text" name="" id="ipt" value="123">
+    <button id="btn" onclick="fn()">按钮</button>
+    <div>
+        <p>123</p>
+        <a>hahaha</a>
+    </div>
+    <script>
+        /*
+          dom的属性操作
+             1.内容操作 -- 输入框的值 -- div里面的内容
+              
+             输入框内容
+                   改变ipt的内容 ipt.value = '222'
+                   获取ipt的内容 ipt.value
+
+             div里面的内容
+                   div.innerHTML 获取div内部的html代码 -- 获取结果是字符串
+                   div.innerHTML = '<b>123</b>' 设置div的内容 
+                   
+                   
+                   div.innerText 获取div内部的纯文本 -- 不能获取到标签
+                   div.innerHTML = '<b>123</b>' -- 设置div的内容 如果设置的是标签 那也会被当成普通文本
+                   
+             2.样式操作 -- 改变样式 
+             3.类名操作
+             4.其他标准属性操作
+             5.自定义属性操作
+        */
+      
+        //不管要操作谁，先要通过js获取到这个元素
+        // var ipt = document.querySelector('#ipt');
+        var ipt = document.getElementById('ipt');
+        //假如两秒以后input的值变成456
+        // setTimeout(function(){
+        //     ipt.value = '456';
+        // },2000);
+
+
+        //打印出input的值
+        console.log(ipt.value);
+        
+
+    //     // 获取按钮-- 点击的时候 获取输入框的值
+    //     function fn(){
+    //         console.log(ipt.value);
+    //     }
+
+    //    //内部的html代码 是字符串
+    //    var div =  document.querySelector('div') ;
+    //     console.log(div.innerHTML)
+
+    //    div.innerHTML ='<span>测试</span> <h1>我是h1</h1>'
+
+        var div = document.querySelector('div');
+        console.log(div.innerText);
+        
+        // innerText 设置的是纯文本的内容，如果设置的标签字符串，会被当做普通字符串
+        // 不会被浏览器当成文本解析了
+        div.innerText = '<b>123</b>'
+
+       
+    </script>
+</body>
+</html>
