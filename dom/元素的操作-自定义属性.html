@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的操作-自定义属性的操作</title>
+    <style>
+         .item{
+            background-color: pink;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #000;
+            width: 200px;
+            height: 200px;
+        }
+        .error{
+          color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="" id="ipt" value="123">
+    <button id="btn" onclick="fn()">按钮</button>
+    <div>
+        <p>123</p>
+        <a>hahaha</a>
+    </div>
+    <div class="error" id="box">
+        aaa
+    </div>
+    <img src="" alt="">
+    <input type="text" id="ipt2">
+    <input type="checkbox" name="" id="ipt3" checked>
+    <script>
+        /*
+          dom的属性操作
+             1.内容操作 -- 输入框的值 -- div里面的内容
+              
+             输入框内容
+                   改变ipt的内容 ipt.value = '222'
+                   获取ipt的内容 ipt.value
+
+             div里面的内容
+                   div.innerHTML 获取div内部的html代码 -- 获取结果是字符串
+                   div.innerHTML = '<b>123</b>' 设置div的内容 
+                   
+                   
+                   div.innerText 获取div内部的纯文本 -- 不能获取到标签
+                   div.innerHTML = '<b>123</b>' -- 设置div的内容 如果设置的是标签 那也会被当成普通文本
+                   
+             2.样式操作 -- 改变样式 
+
+                   改变元素的样式  -- 设置行内样式 修改元素的样式
+                   一般多用于修改样式 
+
+             3.类名操作
+                    设置类名（覆盖）
+                    dom.className ='aaa'
+                    获取类名
+                    dom.className
+                    添加类名
+                    dom.classList.add('aaa')
+                    删除类名
+                    dom.classList.remove('aaa')
+                    替换类名
+                    dom.classList.replace('老的类','新的类')
+                    判断类名
+                    dom.classList.contains('aaa')
+                    切换一个类-有这个类就删除，没有这个类就添加
+                    dom.classList.toggle('aaa')
+             4.其他标准属性操作
+                    dom.属性名 获取属性
+                    dom.属性名 = '属性值' 修改属性
+                    标签中有的属性 都可以被点出来
+             5.自定义属性操作
+                    
+                    不是标准属性 -- 都是自定义属性
+                    <div id="b" aaa="1" bbb="2" cc="加"></div>
+                    一般用于在标签中存数据
+
+                    获取自定义属性
+                        dom.getAttribute('自定义属性名')
+
+                    设置自定义属性
+                        dom.setAttribute('自定义属性名','自定义属性值')
+
+                    删除自定义属性
+                        dom.removeAttribute('自定义属性名')
+
+
+                    data-id='123' 专门用来存数据的属性
+
+                    
+                
+
+
+        */
+        
+        
+    </script>
+
+    <div id="b" aaa="1" bbb="2" cc="加" data-id="2323"></div>
+    <script>
+         var bDiv = document.querySelector('#b');
+         // 修改自定义属性‘cc’为3
+        //  bDiv.setAttribute('cc','3');
+        bDiv.removeAttribute('cc');
+        console.log(bDiv.getAttribute('cc'));
+
+        //获取 data-xx 属性的方式
+        console.log(bDiv.getAttribute('data-id'));
+        console.log(bDiv.dataset.id);
+    </script>
+         
+</body>
+</html>
