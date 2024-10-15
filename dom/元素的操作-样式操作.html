@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的操作-样式操作</title>
+</head>
+<body>
+    <input type="text" name="" id="ipt" value="123">
+    <button id="btn" onclick="fn()">按钮</button>
+    <div>
+        <p>123</p>
+        <a>hahaha</a>
+    </div>
+    <script>
+        /*
+          dom的属性操作
+             1.内容操作 -- 输入框的值 -- div里面的内容
+              
+             输入框内容
+                   改变ipt的内容 ipt.value = '222'
+                   获取ipt的内容 ipt.value
+
+             div里面的内容
+                   div.innerHTML 获取div内部的html代码 -- 获取结果是字符串
+                   div.innerHTML = '<b>123</b>' 设置div的内容 
+                   
+                   
+                   div.innerText 获取div内部的纯文本 -- 不能获取到标签
+                   div.innerHTML = '<b>123</b>' -- 设置div的内容 如果设置的是标签 那也会被当成普通文本
+                   
+             2.样式操作 -- 改变样式 
+
+                   改变元素的样式  -- 设置行内样式 修改元素的样式
+                   一般多用于修改样式 
+
+             3.类名操作
+             4.其他标准属性操作
+             5.自定义属性操作
+        */
+        //点击按钮的时候修改div的样式
+          var div = document.querySelector('div');
+          function fn(){
+               //bacground-color  -- 有短横线的属性名 改成驼峰
+              div.style.backgroundColor = 'red';
+            //   div.style.color = 'red';
+              // div.style.fontSize = '30px';
+              // div.style.fontWeight = 'bold';
+              // div.style.fontFamily = '微软雅黑';
+              // div.style.textAlign = 'center';
+              // div.style.padding = '20px';
+          }
+         
+       
+    </script>
+</body>
+</html>

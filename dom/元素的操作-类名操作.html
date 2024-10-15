@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的操作-类名操作</title>
+    <style>
+         .item{
+            background-color: pink;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #000;
+            width: 200px;
+            height: 200px;
+        }
+        .error{
+          color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="" id="ipt" value="123">
+    <button id="btn" onclick="fn()">按钮</button>
+    <div>
+        <p>123</p>
+        <a>hahaha</a>
+    </div>
+    <div class="error" id="box">
+        aaa
+    </div>
+    <script>
+        /*
+          dom的属性操作
+             1.内容操作 -- 输入框的值 -- div里面的内容
+              
+             输入框内容
+                   改变ipt的内容 ipt.value = '222'
+                   获取ipt的内容 ipt.value
+
+             div里面的内容
+                   div.innerHTML 获取div内部的html代码 -- 获取结果是字符串
+                   div.innerHTML = '<b>123</b>' 设置div的内容 
+                   
+                   
+                   div.innerText 获取div内部的纯文本 -- 不能获取到标签
+                   div.innerHTML = '<b>123</b>' -- 设置div的内容 如果设置的是标签 那也会被当成普通文本
+                   
+             2.样式操作 -- 改变样式 
+
+                   改变元素的样式  -- 设置行内样式 修改元素的样式
+                   一般多用于修改样式 
+
+             3.类名操作
+                    设置类名（覆盖）
+                    dom.className ='aaa'
+                    获取类名
+                    dom.className
+                    添加类名
+                    dom.classList.add('aaa')
+                    删除类名
+                    dom.classList.remove('aaa')
+                    替换类名
+                    dom.classList.replace('老的类','新的类')
+                    判断类名
+                    dom.classList.contains('aaa')
+                    切换一个类-有这个类就删除，没有这个类就添加
+                    dom.classList.toggle('aaa')
+             4.其他标准属性操作
+             5.自定义属性操作
+        */
+        var div = document.querySelector('div');
+        var box =document.querySelector('#box');
+        function fn(){
+          //点击添加类名
+          // div.className = 'item';
+          //点击修改类名（覆盖为空）
+          // box.className = '';
+      
+          // box.classList.add('item');
+          // box.classList.remove('error');
+          // box.classList.replace('error','item');
+
+          console.log(box.classList.contains('item'));
+          box.classList.toggle('error');
+        }
+         
+       
+    </script>
+</body>
+</html>
