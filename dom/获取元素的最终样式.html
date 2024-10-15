@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素的最终样式</title>
+    <style>
+        div {
+          width: 100px;
+          height: 100px;
+          background-color: rebeccapurple;
+        }
+      </style>
+</head>
+<body>
+        <div style="height: 200px;" id="box">
+          <p>我是一个 p 标签</p>
+        </div>
+      
+        <script>
+            /**
+             * 我们之前学习的行内样式主要是 修改元素的样式
+             *    获取元素的最终样式--经过计算的样式（多种样式叠加以后的结果）
+             *    
+             */
+            // window.getComputedStyle(dom) ---返回一个 样式对象
+          var oDiv = document.querySelector('#box');
+          var styleObj = window.getComputedStyle(oDiv);
+          console.log(styleObj);
+          console.log(styleObj.width);//100px
+          console.log(styleObj.height);//200px
+            //  * Uncaught NoModificationAllowedError: Failed to set the 'width' property on 'CSSStyleDeclaration': These styles are computed, and therefore the 'width' property is read-only.
+            //  *  at 获取元素的最终样式.html:35:28
+            //  * 最终样式只能只读  不能修改
+            //styleObj.width = '300px';
+        </script>
+</body>
+</html>
