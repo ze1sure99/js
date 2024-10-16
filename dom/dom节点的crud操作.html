@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom节点的CRUD操作</title>
+</head>
+<body>
+    <div id="box">
+        <p>段落</p>
+    </div>
+    <script>
+        /**
+         * 我们之前学习的dom节点的获取 和 dom属性操作 -- 必须要记住的
+         * 
+         * 接下来，我们讲的dom节点的CRUD操作
+         * 
+         * 1.创建节点
+         *      document.createElement('标签名')
+         * 2.添加节点
+         *      parentNode.appendChild(childNode)
+         * 3.删除节点
+         *      dom.remove()
+         *      parentNode.removeChild(childNode)
+         * 4.替换节点
+         *      parentNode.replaceChild(newNode,oldNode)
+         * 5.插入节点
+         *      parentNode.insertBefore(newNode,refNode)
+         */ 
+
+         // 1-创建dom节点
+         var div = document.createElement('div');
+         // 设置内部html代码
+         div.innerHTML = '<b>123</b>';
+          
+          var box = document.querySelector('#box');
+          //2- 添加dom节点
+          box.appendChild(div);
+          console.log(box);
+
+          //3 - 删除dom节点
+          box.removeChild(div);
+
+          //4 - 替换dom节点
+         
+          //使用 h2标签 替换p标签
+          var h2 = document.createElement('h2');
+          h2.innerHTML = "我是h2标签"
+          box.replaceChild(h2,box.children[0]);
+
+          //5 - 插入dom节点
+           var h3 = document.createElement('h3');
+           h3.innerHTML = '我是h3标签';
+           box.insertBefore(h3,box.children[0]);
+
+
+
+    </script>
+</body>
+</html>

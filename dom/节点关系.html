@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点关系</title>
+</head>
+<body>
+    <div id="box">
+        <h1>222</h1>
+        <div id="test">
+            test
+            <p>这是一个段落</p>
+        </div>
+        <h2>333</h2>
+    </div>
+    <script>
+        /**
+         * 节点关系
+         *  1.父节点（标签-属性-文本） 父元素（标签）
+         *      dom.parentNode
+         * 
+         *      dom.parentElement
+         *  2.子节点  子元素
+         *      dom.children //子元素集合
+         *      dom.childNodes //子节点集合
+         *      dom.firstChild
+         *      dom.lastChild
+         *  3.兄弟节点
+         *      dom.nextElementSibling
+         *      dom.previousElementSibling
+         *      dom.nextSibling
+         *      dom.previousSibling
+         */
+        // 1-父节点 父元素
+        var test = document.querySelector('#test');
+        console.log(test.parentNode); //父节点 
+        console.log(test.parentElement); //父元素
+
+        //2-子节点 子元素
+        //所有的孩子节点 --- 包含文本节点（第一个是p标签前面的文本，第二个是p标签，第三个是p标签换行和空格）
+        console.log(test.childNodes);//子节点 [text,p,text]
+        console.log(test.children);//子元素 [p]
+
+        //3- 兄弟节点  兄弟元素
+
+        console.log(test.nextSibling);
+        console.log(test.previousSibling);
+
+        console.log(test.nextElementSibling);
+        console.log(test.previousElementSibling);
+    </script>
+</body>
+</html>
