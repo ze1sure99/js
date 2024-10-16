@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定义变量let和const</title>
+</head>
+<body>
+    <script>
+        /**
+         * let 和 const 定义变量
+         * 之前都是var 
+         * 
+         * let 和 var 一样 都是定义变量
+         * const 定义常量 --不希望被改变的值（不能被重新赋值）
+         *      对于 对象来讲，不可以修改属性
+         * let 和  const 跟 var 区别
+         *  1.没有声明提升，存在暂时性死区
+         *  2.不能重复使用
+         *  3.*** let 所在的块内 会形成块级作用域，不能在当前作用域外访问
+         */
+        let a = 1;
+        a = 2;
+        const pi =3.14; 
+       // pi = 1;  //报错Uncaught TypeError: Assignment to constant variable.
+
+       const obj = {
+           name:'zf'
+       }
+       obj.name = 'zf2';
+       obj.age=18;
+       console.log(obj);
+
+     //  obj = {} ;Uncaught TypeError: Assignment to constant variable.
+
+      console.log(num);
+      var num =1 ; //undefined  但没有报错
+     
+      setTimeout( function(){
+         //异步执行 最后执行的语句
+          console.log(age);
+      },1000) 
+      //暂时性死区  -- 在变量定义之前不能使用，之后是可以的
+      //console.log(age);//Cannot access 'age' before initialization. 
+      let age = 19;
+
+      function fn(){
+          var a = 1; // 局部变量
+      }
+
+      if(true){
+          var b = 1; //全局变量
+          let n =1 ; //局部变量
+      }
+      console.log(b);
+    //   console.log(n); //n is not defined
+     
+    //   for(var i=0;i<10;i++){
+    //       console.log(i);
+    //       setTimeout( function(){
+    //           console.log(i);//10个10 --最后执行 -- 每一次循环执行完了打印出最后i的结果，延时是异步最后执行
+    //       },1000)
+    //   }
+    //   console.log(i);// 10 全局变量 -- 循环结束了 - i为10
+    for(let i=0;i<10;i++){
+        console.log(i);// 0 1 2 3 4 5 6 7 8 9
+        setTimeout( function(){ 
+            console.log(i);//0 1 2 3 4 5 6 7 8 9
+        },1000)
+    }
+    //let i 是局部变量 -- 每次循环都会重新定义一个i 循环能产生10个代码块，是9个块级作用域 - 局部
+    // {
+    //     let i = 0;
+    //     setTimeout( function(){
+    //         console.log(i);//0
+    //     },1000)
+    // }
+
+    // { 
+    //     let i = 1; 
+    //     setTimeout( function(){
+    //         console.log(i);//1
+    //     },1000)
+    // }
+    // {
+    //     let i = 2;
+    //     setTimeout( function(){
+    //     console.log(i);//2
+    // },1000)
+    // }
+    // {
+    //     let i = 3;
+    //     setTimeout( function(){
+    //     console.log(i);//3
+    // },1000)
+    // }
+    // ...
+    // {
+    //     let i = 9;
+    //     setTimeout( function(){
+    //     console.log(i);//9
+    // },1000)
+    // }
+
+
+    // console.log(i);// i is not defined
+
+    </script>
+    
+</body>
+</html>
