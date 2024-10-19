@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        /**
+         * 箭头函数 - 函数的简写(本质上简写的是匿名函数) 
+         * -- 不能简写 声明式函数。 赋值式函数可以简写
+         */
+        // function sss(){
+          
+        // }
+        let fn = function(a,b){
+            let r = a+b;
+            return r;
+        }
+        /**
+         * 箭头函数的 写法 1  --多个参数的时候 去掉了 function 多了等号和箭头
+         */
+        let fn1 = (a,b) => {
+            let r = a+b;
+            return r;
+        }
+
+        /**
+          * 箭头函数的 写法 2--如果函数的参数只有一个，可以把小括号都省略掉
+          */
+        let fn3 = a => {
+            let r = a+1;
+            return r;
+        }
+
+        /**
+          * 箭头函数的 写法 3--如果函数体只有一行代码，并且是返回值，可以省略大括号和return
+          */
+
+        //参数是a ，返回值是 a+1
+        let fn4 = a => a+1;
+        console.log(fn4(1));
+        
+
+
+        /**
+         * 对象里面的方法 也可以简写，是一样的
+         */
+        const obj1 = {
+            fn: function (a,b) {
+                
+            },
+            fn1: (a,b)=>{
+
+            },
+            fn2 : function(a){
+
+            },
+            fn3 : a => {
+
+            }
+        }
+
+        /**
+         * 例子 -- 参数是一个函数  
+         */
+        let arr = [1,2,3];
+        // arr.forEach(function(v,i){
+        //     console.log(v);
+        //     console.log(i);  
+        // })
+        // arr.forEach((v,i) => {
+        //     console.log(v);
+        //     console.log(i);
+        // })
+         
+        // let resArr = arr.map(function (v){
+        //     return  v +1 ;
+        // } );
+        //v = v +1 参数是v 返回值为v+1
+        // let resArr = arr.map( v => v +1 );
+        // console.log(resArr);
+        //v=>{v+1} 参数是v 没有返回值
+        // let resArr1 = arr.map( v => {v +1} );
+        // console.log(resArr1);
+
+        // let resArr1 = arr.map(v =>{
+        //     return v+1;
+        // })
+        // console.log(resArr1);
+
+        /**
+         * 箭头函数的特点
+         *      1- 失去了自己的this,箭头函数没有this，this是上层作用域的this
+         *         让当前的函数 失去this，this 是上层的this
+         *         普通函数（非箭头的）延时器 定时器 , 参数（回调）函数里面的this都是指向的window,记住即可
+         *      2- 箭头函数没有arguments
+         */      
+        //  setTimeout(function (){
+        //     // 延时器 定时器 , 参数函数里面的this都是指向的window,记住即可
+        //      console.log(1000)
+        //      console.log(this)
+        //  },1000)
+
+        //  document.onclick = function (){
+        //      //事件处理函数 -- 给谁添加的事件,this就是谁
+        //      console.log(this)//document
+        //     //  setTimeout(function () {
+        //     //      console.log(this)//window
+        //     //  },1000)
+        //     setTimeout(()=>{
+        //         //让当前的函数 失去this，this 是上层的this
+        //         console.log(this)//document
+        //     },1000)
+        //  }
+
+//         const obj = {
+//          fn: function () {
+//             console.log(this)//指向 obj
+//         },
+//        // 这个位置是箭头函数的上一层，但是不能打印出 this
+//         fun: function () {
+//           console.log(this)//指向 obj
+//           setTimeout( () => {
+//               console.log(this)//obj
+//           },1000)
+//         },
+//         fun1:()=>{
+//             console.log(this)//window
+//             setTimeout(()=>{
+//                 console.log(this)//window
+//             },1000)
+//         } 
+// } 
+//       obj.fn();
+//       obj.fun();
+//       obj.fun1();
+
+  let  fn5 = function(){
+    // arguments 对象（伪数组） 获取所有实参
+    console.log(arguments)
+  }
+  fn5(1,2,3,4,5)
+
+  let fn6 = () => {
+    // arguments 对象（伪数组） 获取所有实参
+    // console.log(arguments) 报错 arguments is not defined
+  }
+  fn6(9.8,7)
+
+
+
+        
+
+    </script>
+</body>
+</html>
