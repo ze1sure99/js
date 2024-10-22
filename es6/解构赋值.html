@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解构赋值</title>
+</head>
+<body>
+    <script>
+        /**
+         * 解构赋值  -- 新的赋值方法
+         * 
+         *      就是快速的从对象或者数组中取出成员的一个语法方式
+         *      
+         * 
+         *      1.解构对象
+         *           let{变量名} = 对象
+         *              变量会获取后面对象中 属性名和变量名一样的属性的值
+         *      2.解构数组
+         *           let[变量1，变量2] = array
+         *              变量1会获取array中下标为0的值
+         *              变量2会获取array中下标为1的值
+         *           
+         *      注意：
+         *          1.解构对象用{}
+         *          2.解构数组用[]
+         * 
+         */ 
+        // 1.解构对象
+        let obj = {
+            name: 'why',
+            age: 18,
+            fn:()=>{
+                console.log('hello')
+            }
+        }
+        //定义了一个变量name,这个变量能获取到后面的obj对象的name属性
+        // let name = obj.name;
+        // let {name} = obj;
+        // console.log(name);
+        let {name,age,a} = obj; //因为obj对象没有a属性，所以a是undefined
+        console.log(name,age,a);
+        //es5
+        // let name = obj.name;
+        // 下面会经常用到name属性 和 age属性
+        // obj.name;
+        // obj.age;
+
+        //  2.解构数组
+        let arr = [1,2,3,4,5];
+        let [b,c,d,e,f] = arr;
+        console.log(b);
+        console.log(f);
+        let arr1 = ["zhangsan","男"]
+        // console.log(b,c,d,e,f);
+    </script>
+    
+</body>
+</html>
