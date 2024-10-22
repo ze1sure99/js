@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参数的默认值</title>
+</head>
+<body>
+    <script>
+         //es5的写法
+         function fn(a) {
+           a = a || 10//undefined || 10 
+           console.log(a)
+           }
+           fn()   // 不传递参数的时候，函数内部的 a 就是 10
+           fn(20) // 传递了参数 20 的时候，函数内部的 a 就是 20
+        //es6的写法 允许在形参中定义默认值
+         function fn1(a=10){
+             console.log(a)
+         }
+         fn1()
+         fn1(20)
+         //箭头函数也同样适应, **箭头函数如果你需要使用默认值的话，那么一个参数的时候也需要写()
+         //1.有多个参数,设置默认值也要加小括号
+        //  let fn2 = function  (a=10,b=20) {
+        //      console.log(a);
+        //      console.log(b);
+        //  }
+
+        //  fn2();
+        //  fn2(20,30);
+        // let fn2 = (a=10,b=20) =>{
+        //     console.log(a);
+        //     console.log(b);
+        // }
+        // fn2()
+        // fn2(20,30)
+        //2.有一个参数 箭头函数的参数必须要加小括号 否则会报错
+        // let fn3 = function(a=10){
+        //     console.log(a)
+        // }
+        // fn3()
+        // fn3(20);
+        // let fn3 = (a=10)=>{
+        //     console.log(a)
+        // }
+        // fn3();
+        // fn3(20);
+    </script>
+
+
+
+
+
+    
+</body>
+</html>
