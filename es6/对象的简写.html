@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的简写</title>
+</head>
+<body>
+    <script>
+             let  name = "张三";
+             //属性名是title,属性值是title变量的值
+             //{属性名：属性值}
+             //刚好变量名和属性名一致
+             let box = function(){
+
+             }
+             let obj ={name:name,
+                fn: function(){
+                   
+                },
+                box:box
+             }
+             console.log(obj);
+             //变量名 就会成为 属性名-变量的值 就会成为这个属性的 属性值
+             // 对象里面的函数，可以把冒号和function关键字省略
+             let obj2 = { name,
+                fn(){
+
+                },
+                box
+             };
+             console.log(obj2);
+
+            //  let obj3 ={
+            //     name,
+            //     fn:()=>{
+            //     },
+            //     box
+            //  }
+            //  console.log(obj3);
+    </script>
+    
+</body>
+</html>
