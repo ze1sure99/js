@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合并对象</title>
+</head>
+<body>
+    <script>
+         //构造函数上直接使用的方法叫静态方法
+         //可以把obj2的属性和方法合并到obj1上(合并对象)
+         let obj1 = {
+             name:'why',
+             age:18,
+             test: function(){
+             }
+        }
+        let obj2 = {
+            height:1.88,
+            weight:75,
+            test1:()=>{
+            }
+        }
+         Object.assign(obj1,obj2)
+         console.log(obj1)
+    </script>
+    
+</body>
+</html>
