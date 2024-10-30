@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展开运算符</title>
+</head>
+<body>
+    <script>
+        /* 展开运算符 ...     
+         *   相当于去掉了数组的中括号和对象的大括号
+              1.合并数组
+              2.合并对象
+              3.函数传参
+         */
+        let arr = [9,8,7]
+        // let max = Math.max(arr[0],arr[1],arr[2])
+        let max = Math.max(...arr)
+        console.log(max)
+        //合并数组
+        let arr3 = [...arr,1,2,3]
+        console.log(arr3)
+        //合并对象
+        let obj = {
+        name:'zf',
+        age:18,
+        fn:function(){
+
+        }
+    }
+    let obj2 = {
+        ...obj,
+        sex:'男'
+    }
+    console.log(obj2)
+    //函数传参的时候也可以使用
+    let arr1 = [1, 2, 3]
+     function fn(a, b, c) {
+        console.log(a)
+        console.log(b)
+        console.log(c)
+      }
+      // 等价于 fn(1, 2, 3)
+    fn(...arr1)
+    function box(...arr){
+        // console.log(arr)
+        console.log(arr[0])
+        console.log(arr[1])
+        console.log(arr[2])
+     }
+     box(1,2,3)
+    </script>
+    
+</body>
+</html>
