@@ -10,12 +10,15 @@
     <script src="./a.js"></script> -->
     <script>
         // 无法将一个大的程序拆分互相依赖的小文件
-        //再用简单的方法拼装起来
+        //再用简单的方法拼
+        
+        装起来
 
         //b.js文件 需要用a.js里面的函数a 
         //b.js用了a.js种的函数 b.js依赖了a.js
         //引入js的时候，必须考虑顺序
 
+        
         /**
          * 模块化开发 主要有两个关键字
          *    import  -- 引入 -- 导入一个模块里面的接口（函数-变量-对象）
@@ -58,7 +61,7 @@
        //cc是默认导出的box函数，sum是c.js中导出的函数
         import cc,{sum} from './c.js';
         sum();
-        console.log(cc); //box()
+        console.log(cc); //ƒ box(){}
     </script>
 </body>
 </html>
