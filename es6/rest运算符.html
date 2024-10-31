@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest运算符</title>
+</head>
+<body>
+    <script>
+        /**
+         * 展开运算符  倒着用-- 就是 rest运算符（作用：获取剩余参数）
+         */
+        function box(...args){
+            //获取所有实参
+            console.log(arguments);//对象 伪数组
+            /**
+             * ...args = 9,8,7
+             * 把9，8，7赋值给...args
+             * 只要args展开和9,8,7这个相等，这个赋值就成功了
+             * 只有args是一个数组[9,8,7]
+             * 相当于把args转换为数组
+             */
+            console.log(args);//真数组
+
+        }
+        box(9,8,7)
+        /**
+         * let fn = function(){
+         * }
+         * 弥补了箭头函数没有arguments参数的问题
+         */
+        let fn = (...a)=>{
+            console.log(a)
+        }
+        fn(1,2,3)
+        let fn2 = (p,...args)=>{
+         console.log(args)//[5,6]
+        }
+        fn2(4,5,6)
+    </script>
+</body>
+</html>
