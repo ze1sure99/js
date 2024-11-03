@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol类型</title>
+</head>
+<body>
+    <script>
+        //新增数据类型symbol
+        //symbol类型 -- 表示独一无二的值（基本数据类型）
+        //基础数据类型 -- 只要长的一样,一定相等（除了NaN 和 symbol）
+        console.log(1===1)
+        console.log('a'==='a')
+        console.log(true === true)
+        console.log(undefined === undefined)
+        
+        //创建一个symbol
+        let s1 = Symbol('a');
+        let s2 = Symbol('b');
+        console.log(s1);
+        console.log(s2);
+
+        console.log(s1 === s2);
+
+        //作用：作为对象的属性名 防止这个属性被覆盖
+        
+        let sName = Symbol('sName');
+
+        let obj ={
+            name:'zhangjiahui',
+            //sName值作为属性名--使用symbol类型
+            [sName]:'zzh'
+        };
+        //修改了obj的name属性
+        obj.name = 'lisi'; //obj['name']='lisi';
+        console.log(`${obj.name}`)
+
+       // obj.sName = 'wangwu'; //obj['sName']='wangwu'; 相当于新增了一个属性
+       let s3 = Symbol('sName') 
+       obj[s3] = '888';//相当于也是新添加了一个属性，不会修改原来的
+       console.log(obj)
+    </script>
+    
+</body>
+</html>
