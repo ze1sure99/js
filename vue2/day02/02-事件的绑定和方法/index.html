@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的绑定和方法</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" rel="stylesheet">
+    <script src="./vue2.7.9.js"></script>
+    <style>
+      #root p {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <p>
+            <!-- 以前学习事件:onclick="addEvt()" oninput="inputEvt()" -->
+            <!-- 所有事件都是以on开头,然后加上事件名字 -->
+            <!-- 推导得到事件绑定指令：v-on:事件名、v-on:可以简写@ -->
+            <!-- @click===v-on:click  让页面监听一个click事件,然后去执行一个业务(业务就是一个函数、方法)-->
+            <!-- @click="addEvt" -->
+            <!-- 所有事件的方法都需要在一个地方去定义 --method->定义很多方法methods -->
+            <button type="button" @click="addEvt" class="btn btn-sm btn-primary">增加</button>
+            <!-- oninput => @input onblur => @blur -->
+            <span class="label label-danger">{{count}}</span>
+            <!-- 可以直接和方法进行参数传递，和原生事件不同的地方在于：onclick="addEvt("1")" 原生事件传递数据，只能是字符串 -->
+            <!-- vue事件指令，传递的数据全部是数据，不是字符串 -->
+            <button type="button" @click="minusEvt(1)" class="btn btn-sm btn-primary">减少</button>
+        </p>
+    </div>
+    <script>
+      new Vue({
+        el:'#root',
+        data:{
+            count:1
+        },
+        methods:{
+        //   add:function(){
+
+        //   },
+          addEvt(){
+              this.count++
+          },
+          minusEvt(num){
+              this.count-=num
+          }
+        }
+      })    
+    </script>
+</body>
+</html>

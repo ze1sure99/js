@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单功能</title>
+    <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+    <script src="./vue2.7.9.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="container">
+          
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">表单功能</h3>
+            </div>
+            <div class="panel-body">
+                  <div class="form-group">
+                    <label for="">用户名字</label>
+                    <!-- data的数据有值需要显示出来 -->
+                    <!-- <input type="text" v-bind:value="name" class="form-control" id="" placeholder="Input field"> -->
+                    <!-- <input type="text" :value="name" @input="inputEvt"  class="form-control" id="" placeholder="Input field"> -->
+                    <!-- 针对赋值和监听的情况开发了一个指令：双向绑定指令 -->
+                     <!-- 双向绑定 绑定的是数据和事件 把数据模型绑定到输入框上：v-model="name" -->
+                    <input type="text" v-model="name" class="form-control" id="" placeholder="Input field">
+                  </div>
+                  <div class="form-group">
+                    <label for="">用户年龄</label>
+                    <input type="number" class="form-control" id="" placeholder="Input field">
+                  </div>
+                  <div class="form-group">
+                    <label for="">用户性别</label>
+                    
+                    <select name="" id="input" class="form-control" required="required">
+                      <option value="">请选择</option>
+                      <option value="男">男</option>
+                      <option value="女">女</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">用户状态</label>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        在职
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" @click="getValue" class="btn btn-primary">Submit</button>     
+              </div>
+            </div>
+          </div>
+            
+        </div>
+    </div>
+    <script>
+      new Vue({
+        el:'#root',
+        data:{
+           name:'lisi',
+           age:0,
+           sex:'',
+           state: false
+        },
+        methods:{
+           getValue:function(){
+             console.log(this.name)
+           },
+           inputEvt:function(e){
+            this.name= e.target.value;
+           }
+
+        },
+      })    
+    </script>
+</body>
+</html>

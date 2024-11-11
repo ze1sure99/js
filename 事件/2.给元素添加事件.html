@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给元素添加事件</title>
+</head>
+<body>
+    <button id="btn">按钮1</button>
+    <button onclick="console.log(1);console.log(2)">dom0-行内事件</button>
+    <button onclick="box();">dom0-行内事件</button>
+    <script>
+        /**
+         *  给元素添加事件
+         *     1-dom0事件处理
+         *         1-1 给元素添加一个事件
+         *             1-1-1
+         *                 dom.onclick= function(){}
+         *                 click事件名
+         *                 dom.ondblclick= function(){}
+         *                 dom.on事件名 = 事件处理函数
+                           用户触发事件，事件处理函数会自动调用（浏览器）
+                           事件处理函数内部可以使用this 关键字 
+                           this指的是添加元素的事件
+                           
+                       1-1-2
+                           行内的js--内联事件，行内事件
+                             <button onclick="代码">dom0-行内事件</button>
+                           触发了点击的事件，就会执行引号里面的代码
+         *         1-2 删除元素的一个事件
+                        dom.onclick = null
+         *     2-dom2事件处理
+         */
+
+         // 1-1 给元素添加一个事件
+         var btn  = document.querySelector('#btn');
+         // 用户触发点击事件的时候 会执行后边的函数
+         // 后面的函数 叫事件处理函数
+         btn.onclick = function(){
+           console.log('点击了按钮')
+         }
+         //给通过元素的同一个事件 使用dom0添加两次
+         //后一个 会覆盖前一个
+         function fn(){
+            console.log('点击了按钮1')
+         }
+         btn.onclick = fn  
+         //相当于
+        //  var b =1 ;
+        //  b=2;
+        //  console.log(b)
+        //触发了点击的事件，就会执行引号里面的代码
+        //这个函数不是  事件处理函数 --里面的this指向window
+        function box(){
+            console.log(this)
+            console.log("点击了按钮 222")
+        }
+        //使用null 覆盖原来的事件处理函数
+        btn.onclick = null
+    </script>
+
+</body>
+</html>
