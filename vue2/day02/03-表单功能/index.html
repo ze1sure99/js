@@ -24,17 +24,21 @@
                     <!-- <input type="text" v-bind:value="name" class="form-control" id="" placeholder="Input field"> -->
                     <!-- <input type="text" :value="name" @input="inputEvt"  class="form-control" id="" placeholder="Input field"> -->
                     <!-- 针对赋值和监听的情况开发了一个指令：双向绑定指令 -->
-                     <!-- 双向绑定 绑定的是数据和事件 把数据模型绑定到输入框上：v-model="name" -->
-                    <input type="text" v-model="name" class="form-control" id="" placeholder="Input field">
+                    <!-- 双向绑定 绑定的是数据和事件 把数据模型绑定到输入框上：v-model="name" -->
+                    <!-- v-model相当于value属性和input事件以及事件的方法-->
+                    <!-- <input type="text" :value="name" @change="changeEvt"  class="form-control" id="" placeholder="Input field"> -->
+                    <!-- v-model的懒监听->可以给v-model添加修饰符(.修饰符名字)属性 v-model.lazy="name" -->
+                    <!--  去掉两边的空格 trim修饰符 -->
+                    <input type="text" v-model.lazy.trim="name" class="form-control" id="" placeholder="Input field">
                   </div>
                   <div class="form-group">
                     <label for="">用户年龄</label>
-                    <input type="number" class="form-control" id="" placeholder="Input field">
+                    <!-- 可以给v-model添加一个number修饰符，来表示输入的是数字 -->
+                    <input type="number" v-model.number="age" class="form-control" id="" placeholder="Input field">
                   </div>
                   <div class="form-group">
                     <label for="">用户性别</label>
-                    
-                    <select name="" id="input" class="form-control" required="required">
+                    <select name="" id="input" v-model="sex" class="form-control" required="required">
                       <option value="">请选择</option>
                       <option value="男">男</option>
                       <option value="女">女</option>
@@ -44,7 +48,7 @@
                     <label for="">用户状态</label>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="">
+                        <input v-model="state"  type="checkbox" value="">
                         在职
                       </label>
                     </div>
@@ -68,9 +72,16 @@
         methods:{
            getValue:function(){
              console.log(this.name)
+             console.log(this.age)
+             console.log(this.sex)
+             console.log(this.state)
            },
            inputEvt:function(e){
             this.name= e.target.value;
+           },
+           changeEvt:function(e){
+               this.name= e.target.value;
+               console.log(e.target.value)
            }
 
         },
