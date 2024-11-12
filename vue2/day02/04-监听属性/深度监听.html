@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监听</title>
+    <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+    <script src="./vue2.7.9.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="container">
+           <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">深度监听</h3>
+              </div>
+              <div class="panel-body">
+                  
+                  <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>名字</th>
+                            <th>数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,i) in list">
+                            <td>{{item.name}}</td>
+                            <td>{{item.count}}</td>
+                            <td>
+                                <button type="button" @click="add(item)" class="btn btn-xs btn-primary">增加</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  
+               
+                
+              </div>
+           </div>
+           
+            
+          
+            
+        </div>
+    </div>
+    <script>
+      new Vue({
+        el:"#root",
+        data:{
+            /*相当于执行了两步:1.定义变量list  2.赋值*/
+            list:[
+                {
+                name:"HUAWEI P40",
+                count:1
+                }
+
+        ]
+        },
+        watch:{
+            /*监听 list的变化-----他是一个数组 ---只有数组的长度发生变化,才会是数组变化*/
+            list:{
+                handler:function(newValue,oldValue){
+                    console.log(newValue)
+                    console.log(oldValue)
+                },
+                deep:true
+            }
+        },
+        methods: {
+            add:function(item){
+               /*item是对象,对象是引用类型,修改item,list也会修改*/
+               item.count++
+            }
+        },
+      })    
+    </script>
+</body>
+</html>

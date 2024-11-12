@@ -12,14 +12,108 @@
 <body>
     <div id="root">
         <div class="container">
-          
+           <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">监听属性</h3>
+              </div>
+              <div class="panel-body">
+                  <div class="form-group">
+                    <label for="">部门</label>
+                    <!-- select v-model="dept" 给 <select> 框一个默认值，也是实现双向数据绑定-->
+                    <select v-model="dept" name="" id="input" class="form-control" required="required">
+                      <!-- v-for循环渲染select的option标签 depts是所有的可选择的部门数据 -->
+                      <option v-for="index in depts" :value="index">
+                        {{index}}
+                      </option>
+                    </select>
+                    
+                  </div> 
+                  <div class="form-group">
+                    <label for="">职位</label>
+                    <select name="" id="input" class="form-control" required="required">
+                      <option v-for="index in pos" :value="index">
+                        {{index}}
+                      </option>
+                    </select>
+                    
+                  </div>
+                
+                  <button type="submit" @click="getInfo" class="btn btn-primary">Submit</button>
+               
+                
+              </div>
+           </div>
+           
+            
           
             
         </div>
     </div>
     <script>
       new Vue({
-       
+        el:"#root",
+        data:{
+          depts:[
+             '财务部',
+             '软件部',
+             '开发部',
+             '人事部'
+          ],
+          jobs:{
+            '财务部':[
+              '财务经理',
+              '会计',
+              '审计'
+            ],
+            '软件部':[
+              '软件设计',
+              '运营',
+              '软件销售'
+            ],
+            '开发部':[
+                 '前端工程师',
+                 '后端工程师',
+                 '测试工程师'
+            ],
+            '人事部':[
+               '招聘经理',
+               '招聘员',
+               '人事经理'
+            ]
+
+          },
+          pos:[],
+          dept:'软件部'
+        },
+        /**
+         * 可以使用观察属性来观察一个数据的变化
+         */
+        watch:{
+          /** 观察dept的变化,然后去执行一个给pos属性的赋值操作 --执行业务必须是一个函数*/
+          /**监听方法会得到两个参数:改变后的参数和改变前的参数*/
+            //  dept:function( newValue,oldValue){
+            //   // console.log(arguments)
+            //    this.pos = this.jobs[newValue];
+            //   //  console.log(newValue)
+            //   //  console.log(oldValue)
+            //  }
+           /*可以设置观察,立即监听 ---在页面初始化的时候就去监听dept的变化*/
+           dept:{
+             handler:function( newValue,oldValue){
+                // console.log(arguments)
+                this.pos = this.jobs[newValue];
+                // console.log(newValue)
+                // console.log(oldValue)
+             },
+             immediate:true
+           }
+        },
+        methods:{
+          getInfo:function(){
+            console.log(this.jobs[this.dept])
+            this.pos = this.jobs[this.dept];
+          }
+        },
       })    
     </script>
 </body>

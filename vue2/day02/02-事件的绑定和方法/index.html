@@ -23,7 +23,7 @@
             <!-- @click===v-on:click  让页面监听一个click事件,然后去执行一个业务(业务就是一个函数、方法)-->
             <!-- @click="addEvt" -->
             <!-- 所有事件的方法都需要在一个地方去定义 --method->定义很多方法methods -->
-            <button type="button" @click="addEvt" class="btn btn-sm btn-primary">增加</button>
+            <button type="button" @click="addEvt($event)" class="btn btn-sm btn-primary">增加</button>
             <!-- oninput => @input onblur => @blur -->
             <span class="label label-danger">{{count}}</span>
             <!-- 可以直接和方法进行参数传递，和原生事件不同的地方在于：onclick="addEvt("1")" 原生事件传递数据，只能是字符串 -->
@@ -41,7 +41,8 @@
         //   add:function(){
 
         //   },
-          addEvt(){
+          addEvt(e){
+              console.log(e)
               this.count++
           },
           minusEvt(num){
