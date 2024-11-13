@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+  <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+  <script src="./vue2.7.9.js"></script>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="root" class="container">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">产品添加</h3>
+      </div>
+      <div class="panel-body">
+        <!-- 栅格系统 -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label for="productId">编码</label>
+              <input v-model="newProduct.id" type="text" class="form-control" id="productId" placeholder="输入编码">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label for="productName">名字</label>
+              <input v-model="newProduct.name" type="text" class="form-control" id="productName" placeholder="输入名字">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label for="productPrice">价格</label>
+              <input v-model.number="newProduct.price" type="number" class="form-control" id="productPrice"
+                placeholder="输入价格">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label for="productCount">数量</label>
+              <input v-model.number="newProduct.count" type="number" class="form-control" id="productCount"
+                placeholder="输入数量">
+            </div>
+          </div>
+        </div>
+        <button type="button" @click="submitProduct" class="btn btn-xs btn-primary">提交</button>
+      </div>
+    </div>
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">购物车列表</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>编码</th>
+              <th>名字</th>
+              <th>价格</th>
+              <th>数量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="i in list" :key="i.id">
+              <td>{{i.id}}</td>
+              <td>{{i.name}}</td>
+              <td>{{i.price}}</td>
+              <td>
+                <button type="button" @click="changeCount(i, 1)" class="btn btn-xs btn-primary">+</button>
+                {{i.count}}
+                <button type="button" @click="changeCount(i, -1)" class="btn btn-xs btn-primary">-</button>
+              </td>
+            </tr>
+            <!-- 合计商品数量和总价 -->
+            <tr>
+              <td colspan="4">
+                合计：{{totalCount}} 个商品
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                合计：{{totalAmount}} 元
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        // 商品列表
+        list: [
+          { id: '001', name: '华为手机mate40', price: 4000, count: 1 },
+          { id: '002', name: '华为Pad', price: 4000, count: 1 },
+          { id: '003', name: '华为Pad Pro', price: 8000, count: 1 },
+          { id: '004', name: '华为笔记本', price: 8000, count: 1 }
+        ],
+        // 表单提交的新产品
+        newProduct: {
+          id: '',
+          name: '',
+          price: 0,
+          count: 0
+        }
+      },
+       computed:{
+         // 计算商品总数
+         totalCount: function() {
+           return this.list.reduce(function(sum, item) {
+               return sum + parseInt(item.count);
+            }, 0);
+        },
+         // 计算总金额
+         totalAmount:function(){
+           return this.list.reduce(function(sum, item) {
+             return sum + item.price * item.count;
+           }, 0).toFixed(2);
+         }
+       },
+      // computed: {
+      //   // 计算商品总数
+      //   totalCount: {
+      //     // getter：计算商品总数
+      //     get: function () {
+      //       return this.list.reduce(function (sum, item) {
+      //         return sum + parseInt(item.count);
+      //       }, 0);
+      //     },
+      //     // setter：设置商品总数
+      //     set: function (newValue) {
+      //       // 当设置新值时，可以用这个总数来修改商品列表
+      //       let diff = newValue - this.totalCount;
+      //       this.list.forEach(item => {
+      //         item.count += Math.round(diff / this.list.length); // 简单的均分
+      //       });
+      //     }
+      //   },
+
+        // 计算总金额
+      //   totalAmount: {
+      //     // getter：计算总金额
+      //     get: function () {
+      //       return this.list.reduce(function (sum, item) {
+      //         return sum + item.price * item.count;
+      //       }, 0).toFixed(2);
+      //     },
+      //     // setter：设置总金额
+      //     set: function (newValue) {
+      //       // 总金额的设置，按比例分配到每个商品上
+      //       let total = parseFloat(newValue);
+      //       let avgAmount = total / this.list.length;
+      //       this.list.forEach(item => {
+      //         item.price = avgAmount / item.count;  // 假设商品的价格是按比例调整
+      //       });
+      //     }
+      //   }
+      // },
+      methods: {
+        // 修改商品数量
+        changeCount: function (item, delta) {
+          if (item.count + delta <= 0) {
+            // 弹出提示框询问用户是否删除
+            if (confirm('商品数量已为0，是否删除该商品？')) {
+              // 删除商品
+              const index = this.list.indexOf(item);
+              if (index !== -1) {
+                this.list.splice(index, 1); // 删除该商品
+              }
+            }
+          } else {
+            // 如果数量大于0，正常调整数量
+            item.count += delta;
+          }
+        },
+        // 提交表单
+        submitProduct: function () {
+          // 检查表单字段是否填写完整
+          if (!this.newProduct.id || !this.newProduct.name || this.newProduct.price <= 0 || this.newProduct.count <= 0) {
+            alert('请填写完整商品信息');
+            return;
+          }
+
+          // 将新商品添加到购物车
+          this.list.push({
+            id: this.newProduct.id,
+            name: this.newProduct.name,
+            price: this.newProduct.price,
+            count: this.newProduct.count
+          });
+
+          // 清空表单
+          this.newProduct.id = '';
+          this.newProduct.name = '';
+          this.newProduct.price = 0;
+          this.newProduct.count = 0;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
