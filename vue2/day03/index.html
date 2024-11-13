@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的学习</title>
+  <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+  <script src="./vue2.7.9.js"></script>
+</head>
+<body>
+  <div id="root" class="container">
+    <!-- 使用组件 ，刚刚注册一个相当于一个自定义html标签 -->
+    <!-- Unknown custom element: <mypanel> - did you register the component correctly? For recursive components, make sure to provide the "name" option. -->     
+    <!-- 在vue中，如果一个组件的名字是驼峰命名，那么从第二个字母或者数字开始，那么必须在大写字母之前添加"-"并把大写字母改为小写字母 -->
+    <my-panel></my-panel>
+    <my-panel></my-panel>
+    
+    
+  </div>
+  
+  <script>
+    const ZXAlert = {
+      template:`
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Title!</strong> Alert body ...
+      </div>
+      `
+
+    }
+    /*
+     * 定义一个组件 
+     * 组件是多例，不能出现单例的情况，因为组件要实现数据分离和操作分离--- A、B都是同一个组件，但是A和B的数据是独立的，A和B的操作也是独立的
+     * 所以定义的组件不能是一个实例，但是可以使用它来定义一个实例
+     * 所以我们可以定义一个用于构建组件实例的options对象 -- 就是一个js对象，但是有可以用于构建组件的属性
+     */ 
+    const ZXPnel = {
+      // 页面就是一个html模板 -------template
+      template: `
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">我的panel</h3>
+          </div>
+          <div class="panel-body">
+            <button type="button" @click="optEvt('add')" class="btn btn-danger">增加</button>
+            {{ count }}
+            <button type="button" @click="optEvt('minus')" class="btn btn-danger">减少</button>
+          </div>
+        </div>`,   
+      //  The "data" option should be a function that returns a per-instance value in component definitions.
+      //理解：因为data如果为一个对象，那么对象是引用数据类型，所有所有实例共用一个对象，所以修改其中一个实例，其他实例也会被修改。
+      //解决：data应该为一个工厂函数，返回一个对象，这样每个实例都有自己的对象，修改其中一个实例，其他实例不会被修改。
+      data:function() {
+          return {
+            count:10
+          }
+      },
+      methods: {
+        optEvt: function(type) {
+          if (type === 'add') {
+            this.count++;
+          } else if (type === 'minus') {
+            this.count--;
+          }
+        }
+      }
+    };
+
+    const vm = new Vue({
+      /* 一个组件定义好以后，如果我们外部要使用组件，那么必须注册这个组件 */
+      components: {
+        /* 前端的key表示在当前实例注册组件名字 */
+        /* 后边这里指定这个名字的组件的构造options是什么 */
+        'MyPanel': ZXPnel
+      }
+    });
+
+    /**
+     * 把vue实例和数据以及方法等挂载到domTree上
+     * 把所有的vue内部方法都必须在方法或者属性前加上$
+     */
+    vm.$mount('#root');
+  </script>
+</body>
+
+</html>
