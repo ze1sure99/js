@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期</title>
+  <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+  <script src="./vue2.7.9.js"></script>
+</head>
+<body>
+     <div id="root" class="container">
+          <zx-panel></zx-panel>
+     </div>
+     <script>
+      const ZXPanel = {
+          /*
+            Vue框架不允许直接获取dom节点，必须通过关联（ref）属性获取dom节点
+          */
+          template:`
+          <div class="panel panel-default">
+          <div ref="node" class="panel-body">
+             商品名字:{{name}} 数量:{{count}}
+          </div>
+        </div>
+          `,
+          data:function(){
+            return{
+              name:'init name',
+              count:0,
+              price:1000
+            }
+          },
+          /**
+           * 希望在组件实例化的时候，给数据赋值，请求数据回来
+           * 需要知道组件现在是一个什么状态:创建，挂载的状态等
+           * 所以vue框架给出一个叫生命周期的定义，他会告诉我们程序员当前组件处于什么状态
+           * 所以我们的生命周期，就是指一个组件从创建到销毁的过程中特定的环节给出钩子函数
+           * 组件创建--create、挂载--mount、更新--update、销毁--destroy，每一个阶段分为之前和之后，因此生命周期有8个钩子函数
+           * 之前 beforeXXX、xxxed -> beforeCreate、created
+           * 生命周期全部是同步代码
+           */
+          beforeCreate() {
+            console.log("创建之前")
+            /*beforeCreate生命周期在给数据绑定到vm层之前执行的 ----Vue实例还没有执行完成*/
+            console.log('beforeCreate的name变量',this.name)
+            setTimeout(function(){
+            console.log("beforeCreated的异步函数执行了");
+            })
+          },
+          /**
+           * beforeCreate比create晚多久？根据程序来决定，时间不固定，但是不能异步
+           * 在created生命周期非异步赋值不会触发更新生命周期
+           */
+          created() {
+              console.log("创建之后")
+              console.log('created的name变量',this.name)
+              // 获取元素 ---使用ref --在实例上有一个$refs,属性名字和ref="node"这里的名字一样
+              console.log('created获取属性',this.$refs.node)
+              // this.name = '张三'  不会触发更新生命周期
+              /**
+               * 不能有异步，只要有异步函数 绝对会触发
+               */
+              /*这里必须是箭头函数，否则this会丢失*/
+              Promise.resolve().then(()=>{
+                  this.name = '李四'
+                  /**
+                   * 给一个没有在页面上使用的变量赋值,不会触发更新生命周期
+                   * 所以我们的生命周期指的是虚拟dom的生命周期，而不是组件的生命周期
+                   */
+                  // this.price=2000;
+              })
+          },
+          beforeMount() {
+              console.log("挂载之前")
+          },
+          /*
+            mounted常用于在组件初始化的时候获取dom节点，created常用于初始化数据等业务
+            只要不获取dom节点，不要使用mounted
+          */
+          mounted() {
+              console.log("挂载之后")
+              console.log('created获取属性',this.$refs.node)
+              // let div = this.$refs.node
+              // div.innerHTML = '<b>123</b>';
+          },
+          beforeUpdate() {
+              console.log("更新之前")
+          },
+          updated() {
+              console.log("更新之后")
+          },
+
+          }
+      const vm = new Vue({
+          components:{
+            'ZxPanel':ZXPanel
+          }
+      }
+      );
+      vm.$mount('#root');
+     </script>
+ 
+</body>
+
+</html>

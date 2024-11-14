@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期-02</title>
+    <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+    <script src="./vue2.7.9.js"></script>
+</head>
+<body>
+    <div id="root" class="container">
+        <zx-panel></zx-panel>
+        
+   </div>
+   <script>
+    const ZXAlert ={
+        template:`
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Title!</strong> Alert body ...
+        </div>
+        `,
+        beforeCreate() {
+          console.log("子组件创建之前")
+        },
+        created() {
+            console.log("子组件创建之后")
+        },
+        beforeMount() {
+            console.log("子组件挂载之前")
+        },
+        mounted() {
+            console.log("子组件挂载之后")
+        },
+        beforeDestroy() {
+            console.log('------------------beforeDestroy')
+        },
+        destroyed() {
+            console.log('------------------destroyed')
+        }
+    }
+    const ZXPanel = {
+        components:{
+            'ZxAlert':ZXAlert
+        },
+        /*
+          Vue框架不允许直接获取dom节点，必须通过关联（ref）属性获取dom节点
+        */
+       /**
+        * 如果事件的回调方法很简单，可以直接把方法的内容写在事件绑定的地方，
+        * 但是如果事件的回调方法很复杂，建议把方法写在methods中，然后通过事件绑定调用
+        */
+        template:`
+        <div class="panel panel-default">
+        <div ref="node" class="panel-body">
+           商品名字:{{name}} 数量:{{count}}
+           <hr/>
+            <button @click="isShow" class="btn btn-primary">显示或隐藏alert组件</button>
+           <hr/>
+           <zx-alert v-if="show"></zx-alert>
+        </div>
+      </div>
+        `,
+        data:function(){
+          return{
+            show:true,
+            name:'init name',
+            count:0,
+            price:1000
+          }
+        },
+        methods: {
+            isShow(){
+              this.show = !this.show
+            }
+        },
+        /**
+         * 希望在组件实例化的时候，给数据赋值，请求数据回来
+         * 需要知道组件现在是一个什么状态:创建，挂载的状态等
+         * 所以vue框架给出一个叫生命周期的定义，他会告诉我们程序员当前组件处于什么状态
+         * 所以我们的生命周期，就是指一个组件从创建到销毁的过程中特定的环节给出钩子函数
+         * 组件创建--create、挂载--mount、更新--update、销毁--destroy，每一个阶段分为之前和之后，因此生命周期有8个钩子函数
+         * 之前 beforeXXX、xxxed -> beforeCreate、created
+         * 生命周期全部是同步代码
+         */
+        beforeCreate() {
+          console.log("创建之前")
+        },
+        created() {
+            console.log("创建之后")
+        },
+        beforeMount() {
+            console.log("挂载之前")
+        },
+        mounted() {
+            console.log("挂载之后")
+        },
+        beforeUpdate() {
+            console.log("更新之前")
+        },
+        updated() {
+            console.log("更新之后")
+        },
+
+        }
+    const vm = new Vue({
+        components:{
+          'ZxPanel':ZXPanel
+        }
+    }
+    );
+    vm.$mount('#root');
+   </script>
+    
+</body>
+</html>
