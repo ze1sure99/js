@@ -15,6 +15,10 @@
     <!-- 在vue中，如果一个组件的名字是驼峰命名，那么从第二个字母或者数字开始，那么必须在大写字母之前添加"-"并把大写字母改为小写字母 -->
     <my-panel></my-panel>
     <my-panel></my-panel>
+    <zx-alert></zx-alert>
+    
+    
+    
     
     
   </div>
@@ -43,6 +47,7 @@
             <h3 class="panel-title">我的panel</h3>
           </div>
           <div class="panel-body">
+            <zx-alert/>
             <button type="button" @click="optEvt('add')" class="btn btn-danger">增加</button>
             {{ count }}
             <button type="button" @click="optEvt('minus')" class="btn btn-danger">减少</button>
@@ -64,7 +69,11 @@
             this.count--;
           }
         }
-      }
+      },
+      /*自己注册*/
+      // components:{
+      //   'ZxAlert':ZXAlert
+      // }
     };
 
     const vm = new Vue({
@@ -72,11 +81,15 @@
       components: {
         /* 前端的key表示在当前实例注册组件名字 */
         /* 后边这里指定这个名字的组件的构造options是什么 */
-        'MyPanel': ZXPnel
+        'MyPanel': ZXPnel,
+        //当在子组件里面使用的时候 我们这里的注册是只有当前组件才可以使用的
+        'ZxAlert':ZXAlert
       }
     });
-
+     /*注册成全局组件*/
+     Vue.component('ZxAlert',ZXAlert)
     /**
+     * 
      * 把vue实例和数据以及方法等挂载到domTree上
      * 把所有的vue内部方法都必须在方法或者属性前加上$
      */
