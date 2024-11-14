@@ -115,6 +115,12 @@
         }
       },
        computed:{
+          /**
+          * computed相当于是一个深度监听和立即监听的watch属性
+          * computed有缓存数据的功能，watch没有
+          * 所以watch要缓存数据，需要借助data属性来定义数据和缓存数据
+          * 根据getter方法定义,getter方法内部不能有异步函数，watch内部有异步函数
+          */
          // 计算商品总数
          totalCount: function() {
            return this.list.reduce(function(sum, item) {
