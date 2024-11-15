@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子传父</title>
+  <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+  <script src="./vue2.7.9.js"></script>
+</head>
+<body>
+     <div id="root" class="container">
+        <!-- 父组件在子组件上绑定了一个自定义事件，并且绑定了回调方法 -->
+        <zx-panel @childevt="add" :child-count="parentCount"></zx-panel>
+        
+     </div>
+     <script>
+     const ZXPanel = {
+      //  ['panel', 'panel-' + type] 是一个数组，数组中的每一项都会被解析为类名并应用到该元素上。
+        template:`
+        <div :class="['panel', 'panel-primary']">
+              <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+              </div>
+              <div class="panel-body">
+                父组件的数据:{{childCount}}
+                <button type="button" @click="addEvt" class="btn btn-primary">增加</button>
+              </div>
+          </div>
+        `,
+        /*
+          所以子组件可以通过props属性接受父组件传递的数据
+        */
+       props:{
+         /*
+         接收一个名字叫type的属性
+         因为父组件是给实例绑定的数据，所以子组件的this上就有这个属性
+         */
+         /*指定type属性的数据类型*/
+        //  type:String
+         /**
+          * 可以通过default来指定默认值
+          */
+         type:{
+          default:"primary",
+          // 主要限制父组件传过来的数据类型
+          type:String,
+          /**
+           * 添加一个属性,表示一定要传参数
+           */
+          // required:true
+         },
+         childCount:{
+          type:Number
+         }
+       },
+       methods: {
+        addEvt:function(){
+            // 改变props的值是不合理的因为父组件的数据 只能父组件修改
+            // this.childCount++
+            // 当子组件被点击的时候，父组件如何接受子组件的点击事件？
+            //所以子组件被点击的时候，需要通过事件的原理回调父组件绑定的事件的回调方法
+            /**
+             * 子组件要触发父组件绑定到子组件的事件,并且传递一个参数
+             */
+            this.$emit('childevt',6,"test")
+        }
+       },
+     }
+     const vm = new Vue({
+       data:function(){
+         return{
+          parentCount: 10,
+          parentArr:[1,2,3]
+         }
+       },
+       methods:{
+         add:function(num,str){
+               console.log(str)
+               this.parentCount+=num
+         }
+       }
+        
+     })
+     Vue.component('zx-panel',ZXPanel)
+      vm.$mount('#root');
+     </script>
+ 
+</body>
+
+</html>

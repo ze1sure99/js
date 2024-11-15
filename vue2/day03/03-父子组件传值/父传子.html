@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父传子</title>
+  <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+  <script src="./vue2.7.9.js"></script>
+</head>
+<body>
+     <div id="root" class="container">
+      <!--给子元素绑定一个属性数据(props data) ,相当于给子组件实例绑定一个数据 -->
+      <!-- 表示父组件向 zx-panel 子组件传递了一个名为 type 的属性，值为字符串 "success" -->
+       <zx-panel type="success"></zx-panel>       
+       <!-- type="2" 表示给子组件绑定一个数据类型为字符串的2 -->
+       <!-- <zx-panel type="2"></zx-panel> -->
+       <!-- Invalid prop: type check failed for prop "type". Expected String with value "2", got Number with value 2. -->
+       <!-- <zx-panel :type="2"></zx-panel>  -->
+       <!--Missing required prop: "type"  -->
+       <!-- :arr="parentArr" 将父组件的 parentArr 数组传递给子组件的 arr 属性。
+:child-count="parentCount" 将父组件的 parentCount 数字传递给子组件的 childCount 属性。 -->
+       <zx-panel :arr="parentArr" :child-count="parentCount"></zx-panel>
+       <zx-panel type="danger"></zx-panel>
+     </div>
+     <script>
+     const ZXPanel = {
+      //  ['panel', 'panel-' + type] 是一个数组，数组中的每一项都会被解析为类名并应用到该元素上。
+        template:`
+        <div :class="['panel', 'panel-' + type]">
+              <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+              </div>
+              <div class="panel-body">
+                总数量:{{childCount}}
+                数组内容:{{arr}}
+              </div>
+          </div>
+        `,
+        /*
+          所以子组件可以通过props属性接受父组件传递的数据
+        */
+       props:{
+         /*
+         接收一个名字叫type的属性
+         因为父组件是给实例绑定的数据，所以子组件的this上就有这个属性
+         */
+         /*指定type属性的数据类型*/
+        //  type:String
+         /**
+          * 可以通过default来指定默认值
+          */
+         type:{
+          default:"primary",
+          // 主要限制父组件传过来的数据类型
+          type:String,
+          /**
+           * 添加一个属性,表示一定要传参数
+           */
+          // required:true
+         },
+         childCount:{
+          type:Number
+         },
+         arr:{
+          type:Array
+         }
+
+       }
+     }
+     const vm = new Vue({
+       data:function(){
+         return{
+          parentCount: 10,
+          parentArr:[1,2,3]
+         }
+       }
+        
+     })
+     Vue.component('zx-panel',ZXPanel)
+      vm.$mount('#root');
+     </script>
+ 
+</body>
+
+</html>
