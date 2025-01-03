@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-RENDER方法和虚拟DOM</title>
+    <link href="./bootstrap.3.4.1.css" rel="stylesheet">
+    <script src="./vue2.7.9.js"></script>
+    <style>
+        .item {
+            border-bottom: solid 1px #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="container">
+        <zx-tree></zx-tree>
+    </div>
+    <script>
+        // 定义组件
+        const ZXTree = {
+            data() {
+                return {
+                    list:[
+                        {
+                            name: '第一层01',
+                            children: [
+                                {
+                                    name: '第一层01-01',
+                                    children: [
+                                        {
+                                            name: '第一层01-01-01'
+                                        },
+                                        {
+                                            name: '第一层01-01-02'
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: '第一层01-02'
+                                }
+                            ]
+                        },
+                        {
+                            name: '第一层02'
+
+
+                            
+                        }
+                    ],
+                   
+            }
+        },
+        //: Failed to mount component: template or render function not defined.
+        //挂载组件失败，template和render函数至少有一个必须存在
+        //template会被编译成一个render方法
+        render(createElement) {
+            //createElement(tag, data, children) 可以创建虚拟DOM
+            // console.log(arguments)
+            const h1 = createElement(
+                //这个方法接收三个参数:1.元素名字、2.元素的属性、3.元素的子元素
+                'h1',
+                {
+                    style:{color:'red'}
+                },
+                [
+                    'h1 element',
+                    createElement(
+                        'i',
+                        {
+                            style:{color:'blue',fontSize:'14px'}
+                        },
+                        [
+                            'i element'
+                        ]
+                    )
+                ]
+            )
+            console.log(h1)
+            //虚拟dom是由render方法的形参createElement方法创建的一个js对象
+            //这个js对象描述了真实的dom元素
+            //如果虚拟dom需要挂载到domTree上，那么必须使用render,所以我们创建的虚拟dom需要返回给render
+            return h1;
+        },
+            // name: 'ZXTree', // 添加组件名称
+            // template: `
+            // <div>
+            //     <div class='item'>第一层</div>
+            //     <div style="margin-left:20px">
+            //           <div class='item'>第二层</div>
+            //             <div style="margin-left:20px">
+            //                <div class='item'>第三层</div>
+            //             </div> 
+            //     </div>
+            //     <div class='item'>第一层</div>
+            //     <div style="margin-left:20px">
+            //           <div class='item'>第二层</div>
+            //             <div style="margin-left:20px">
+            //                <div class='item'>第三层</div>
+            //             </div> 
+            //     </div>  
+            //  </div>      
+            // `
+        };
+
+        // 注册组件并挂载 Vue 实例
+        new Vue({
+            components: {
+                'zx-tree': ZXTree // 确保组件名称是 kebab-case
+            }
+        }).$mount('#root');
+    </script>
+</body>
+
+</html>
