@@ -23,10 +23,9 @@ Vue.config.productionTip = false
 //       ])
 //   }
 // }
-import app from '@/MyApp'
 new Vue({
   render(createElement){
     //createElemet(元素名，元素属性，元素的子元素),也可以createElment(组件)
-     return createElement(app)
+     return createElement(App)
   }
 }).$mount('#app')
