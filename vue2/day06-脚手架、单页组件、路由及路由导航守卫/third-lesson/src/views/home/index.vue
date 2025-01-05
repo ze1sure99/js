@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>OA  系统首页</h3>
+        <h3>OA  系统首页 -- 欢迎您 {{username}}</h3>
         <hr/>
         <button @click="toDos">代办</button>
         <!-- 子路由跳转，必须是父路由+‘/’+子路由名字 -->
@@ -13,6 +13,17 @@
 
 <script>
     export default{
+        data(){
+            return{
+              username:''      
+            }
+        },
+        //在created生命周期中 接受参数
+        created(){
+            //**获取路由传递的查询参数  */
+            console.log(this.$route)
+            this.username = this.$route.query.name
+        },
         name:'Home',
         methods:{
             toAnalysis(){
