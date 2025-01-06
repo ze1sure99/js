@@ -25,6 +25,7 @@ export default {
             //push方法可以接收一个对象
             this.$router.push({
                 path: '/home',
+                // query -- 一个参数时是url地址里面的？ -- 多个参数时是url地址里面的？&
                 query: {
                     name: this.username,
                     id: this.id

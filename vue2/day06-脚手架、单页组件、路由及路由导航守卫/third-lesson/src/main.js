@@ -87,7 +87,19 @@ const router = new Router(
                 ]
             },
             {
-                path:'/order',
+                /*可以使用动态路由进行传参*/
+                // 定义路由的时候，需要把动态字段的key定义出来，并且使用":"连接
+                // path:'/order/:id' 那么说明动态字段的key为id,在使用的时候:id需要替换为传递的参数
+                //例如：要跳转到一个id为test-001页面  /order/test-001
+                path:'/order/:orderId',
+                // 定义一个路由别名,在进行路由跳转的时候，必须和这里的字符串一致
+                name:'orderPath',
+                // 路由的固定参数,固定参数是改不了的
+                meta:{
+                    arg0:1,
+                    arg1:'test',
+                    arg2:true
+                },
                 components:{
                     default:Order,
                     nav:Nav,
