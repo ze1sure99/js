@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-view name="nav"></router-view>
         <h3>OA  系统首页 -- 欢迎您 {{username}}</h3>
         <hr/>
         <button @click="toDos">代办</button>
@@ -7,8 +8,8 @@
         <button @click="toAnalysis">统计</button>
         <hr/>
         <router-view></router-view>
-        <hr/>
-    </div>
+        <router-view name="footer"></router-view>
+        </div>
 </template>
 
 <script>
