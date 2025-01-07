@@ -60,6 +60,7 @@ const router = new Router(
             },
             {
                 path:'/home',
+                //components 定义具名(命名)路由视图
                 components:{
                     /**有一个默认的组件 */
                     default:Home,
@@ -75,7 +76,6 @@ const router = new Router(
                 children:[
                     //一定要注意，不能以/开头，否则我们定义的是一级路由
                     //如果path为空，那么二级路由的默认路由地址，同一级路由的'/'
-
                     {
                        path:'',
                        component:todos
