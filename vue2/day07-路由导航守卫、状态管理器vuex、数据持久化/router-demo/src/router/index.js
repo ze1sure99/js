@@ -9,6 +9,7 @@ import Nav from '@/components/Nav.vue'
 import Footer from '@/components/Footer.vue'
 import todos from '@/views/home/todos.vue'
 import ana from '@/views/home/ana.vue'
+import order from '@/views/home/order.vue'
 
 /**
  * router是一个插件，所以需要Vue来注册使用才会有vue-router的全局组件
@@ -38,10 +39,10 @@ const router = new Router({
                 nav:Nav,
                 footer:Footer
             },
-            beforeEnter:function(to,from,next){
-                console.log('---------------beforeEnter',to)
-                next()
-            },
+            // beforeEnter:function(to,from,next){
+            //     console.log('---------------beforeEnter',to)
+            //     next()
+            // },
             children:[
                 {
                     path: 'todos',
@@ -49,9 +50,16 @@ const router = new Router({
                 },
                 {
                     path: 'ana',
+                    name:'ana',
                     component:ana 
                 }
             ]
+        },
+        {
+            path:'/order/:id',
+            name:'orderPath',
+            meta:{arg1:0,arg2:"zhangsan",arg3:true},
+            component:order
         }
     ]
 })
