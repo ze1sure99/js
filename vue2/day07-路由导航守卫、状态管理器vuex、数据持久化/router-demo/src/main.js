@@ -9,9 +9,11 @@
 import Vue from 'vue'
 import app from '@/App.vue'
 import router from '@/router'
+import store from '@/store'
 new Vue({
   el: '#app',
   router: router,
+  store: store,
   render : function (creteElment) { 
     return  creteElment(app)
   }
