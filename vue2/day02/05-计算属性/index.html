@@ -50,14 +50,21 @@
               // amount:function(){
               //   return this.obj.price*this.obj.count
               // }
+              //这个amount是对象
               amount:{
                 //getter
-                get:function(){
+                // get:function(){
+                //   return this.obj.price*this.obj.count
+                // },
+                get(){
                   return this.obj.price*this.obj.count
                 },
                 //setter
-                set:function(val){
-                  //this.amount = val 属于递归
+                // set:function(val){
+                //   //this.amount = val 属于递归
+                //   console.log(val,'调用setter方法')
+                // }
+                set:val=>{
                   console.log(val,'调用setter方法')
                 }
               }
@@ -66,6 +73,9 @@
             addEvt:function(){
               this.obj.count++
             },
+            // addEvt:()=>{
+            //    this.obj.count++
+            // },
             getAmount:function(){
               //this.obj.price*this.obj.count
               // console.log(this.obj.price*this.obj.count)
